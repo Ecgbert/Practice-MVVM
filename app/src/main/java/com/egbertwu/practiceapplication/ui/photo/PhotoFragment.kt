@@ -12,6 +12,8 @@ import androidx.navigation.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.egbertwu.practiceapplication.GlideApp
+import com.egbertwu.practiceapplication.GlideRequest
 import com.egbertwu.practiceapplication.R
 import com.egbertwu.practiceapplication.util.EventObserver
 import kotlinx.android.synthetic.main.fragment_photo.*
@@ -20,7 +22,8 @@ import org.koin.core.KoinComponent
 
 
 class PhotoFragment : Fragment(R.layout.fragment_photo), KoinComponent {
-    private val photoAdapter by lazy { PhotoAdapter(lifecycleScope) }
+    private val glideRequests by lazy { GlideApp.with(this) }
+    private val photoAdapter by lazy { PhotoAdapter(glideRequests) }
     private val viewModel: PhotoViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
